@@ -10,4 +10,6 @@ import { CommonModule } from '@angular/common';
 })
 export class DashboardComponent {
 
+  books: string[] = ['Angular', 'React', 'jQuery'];
+
 }
