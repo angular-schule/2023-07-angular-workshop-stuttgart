@@ -1,1 +1,4 @@
-<p>{{ books | json }}</p>
+<app-book
+ *ngFor="let b of books"
+ [book]="b"
+/>

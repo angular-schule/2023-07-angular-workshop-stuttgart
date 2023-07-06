@@ -7,3 +7,12 @@ export interface Book {
 
   // price!
 }
+
+
+// Null object pattern
+export const NullBook = {
+  isbn: '-1',
+  title: '',
+  description: '',
+  rating: 0
+}
