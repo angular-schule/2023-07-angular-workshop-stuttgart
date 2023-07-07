@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
-import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Book } from '../shared/book';
+import { NgFor } from '@angular/common';
+import { Component, inject } from '@angular/core';
+
 import { BookComponent } from '../book/book.component';
+import { Book } from '../shared/book';
+import { BookRatingService } from '../shared/book-rating.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [BookComponent, NgFor, NgIf],
+  imports: [BookComponent, NgFor],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+
+  bookRating = inject(BookRatingService);
 
   books: Book[] = [{
     isbn: '000',
@@ -29,11 +33,19 @@ export class DashboardComponent {
     rating: 1
   }];
 
-  doRateUp(book: Book): void {
-    console.table(book);
+  doRateUp(book: Book) {
+    const ratedBook = this.bookRating.rateUp(book);
+    this.updateAndSortList(ratedBook);
   }
 
-  doRateDown(book: Book): void {
-    console.table(book);
+  doRateDown(book: Book) {
+    const ratedBook = this.bookRating.rateDown(book);
+    this.updateAndSortList(ratedBook);
+  }
+
+  updateAndSortList(ratedBook: Book) {
+    this.books = this.books
+      .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
+      .sort((a, b) => b.rating - a.rating); // 🎉
   }
 }
