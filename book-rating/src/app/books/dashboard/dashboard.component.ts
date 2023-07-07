@@ -28,4 +28,12 @@ export class DashboardComponent {
     description: 'Blubb!',
     rating: 1
   }];
+
+  doRateUp(book: Book): void {
+    console.table(book);
+  }
+
+  doRateDown(book: Book): void {
+    console.table(book);
+  }
 }
