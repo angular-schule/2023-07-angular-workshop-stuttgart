@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { Book } from '../shared/book';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgIf],
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss']
 })
@@ -13,4 +14,14 @@ export class BookComponent {
 
   @Input({ required: true }) book: Book | undefined;
 
+  @Output() rateUp = new EventEmitter<Book>();
+  @Output() rateDown = new EventEmitter<Book>();
+
+  doRateUp() {
+    this.rateUp.emit(this.book);
+  }
+
+  doRateDown() {
+    this.rateDown.emit(this.book);
+  }
 }
