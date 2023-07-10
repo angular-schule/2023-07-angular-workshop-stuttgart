@@ -18,4 +18,14 @@ describe('BookComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  /* 😭😢😭
+  it('should work as expected', () => {
+    expect(true).toBeTruthy();
+
+    // test that everything works, no expcetion thrown
+    component.doRateDown()
+    component.doRateUp()
+  });
+  */
 });
