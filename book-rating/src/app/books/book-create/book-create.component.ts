@@ -27,4 +27,6 @@ export class BookCreateComponent {
       nonNullable: true
     })
   });
+
+  c = this.bookForm.controls;
 }
