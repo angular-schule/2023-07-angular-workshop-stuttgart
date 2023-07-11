@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { TitleStrategy, provideRouter } from '@angular/router';
+import { TitleStrategy, provideRouter, withDebugTracing } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 
 
@@ -8,7 +8,7 @@ import { CustomTitleStrategy } from './custom-title-strategy';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes /*, withDebugTracing() */),
     provideHttpClient(),
     { provide: TitleStrategy, useClass: CustomTitleStrategy }
   ]
