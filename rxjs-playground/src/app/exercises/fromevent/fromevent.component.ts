@@ -20,12 +20,17 @@ export class FromeventComponent {
 
     /******************************/
 
-    fromEvent(window, 'resize').pipe(
-      map(w => (w.target as Window).innerWidth),
-      // tap(x => this.currentWidth = 1111), // impure!
-      debounceTime(1000),
-      startWith(2222),
-      startWith(1111),
+    // A = 2222
+    // B = 1111
+    // E = Events
+    // W = Width
+
+
+    fromEvent(window, 'resize').pipe(                 //            -E-----EEE-----E
+      map(w => (w.target as Window).innerWidth),      //            -W-----WWW-----W
+      debounceTime(2000),                             //   ---2000---W---2000---W---2000---W
+      startWith(2222),                                //  A---2000---W---2000---W---2000---W
+      startWith(1111),                                // BA---2000---W---2000---W---2000---W
     ).subscribe(width => this.currentWidth = width);
 
 
