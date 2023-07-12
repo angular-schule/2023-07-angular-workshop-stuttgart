@@ -15,6 +15,6 @@ export class BookStoreService {
   }
 
   getSingleBook(isbn: string) {
-    return this.httpClient.get<Book>(environment.apiUrl + 'books/' + isbn);
+    return this.httpClient.get<Book>(environment.apiUrl + 'books/' + isbn + '/slow');
   }
 }
