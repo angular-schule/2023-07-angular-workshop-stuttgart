@@ -5,9 +5,11 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { CustomTitleStrategy } from './custom-title-strategy';
-import { provideStore } from '@ngrx/store';
+import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { bookFeature } from './books/store/book.reducer';
+import { BookEffects } from './books/store/book.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +18,8 @@ export const appConfig: ApplicationConfig = {
     { provide: TitleStrategy, useClass: CustomTitleStrategy },
     provideStore(),
     provideEffects(),
-    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideState(bookFeature),
+    provideEffects(BookEffects)
 ]
 };
