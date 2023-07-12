@@ -1,6 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { map, timer } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { HistoryComponent } from '../../shared/history/history.component';
 
@@ -12,7 +13,7 @@ import { HistoryComponent } from '../../shared/history/history.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UnsubscribeComponent {
-  interval$ = timer(0, 1000).pipe(
+  interval$ = toSignal(timer(0, 1000).pipe(
     map(x => x * 100)
-  )
+  ));
 }
